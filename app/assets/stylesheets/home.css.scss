@@ -3,16 +3,29 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 //= require reset
 
+$medium-break: 940px;
+$small-break: 550px;
+
 $yellow: #ECD078;
 $orange: #D95B43;
 $red: #C02942;
 $purple: #542437;
 $blue: #53777A;
 
+@mixin box-sizing {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
 body {
 	font-family: "Open Sans";
 	-webkit-font-smoothing: antialiased;
 	background-color: #ededed;
+}
+
+div {
+	@include box-sizing;
 }
 
 #top {
@@ -26,12 +39,15 @@ body {
 }
 
 #topWrapper {
-	width: 940px;
-	padding: 20px 10px 0 10px;
-	margin: auto;
-}
+	@media (min-width: $medium-break) {
+    width: 940px;
+  }
 
-#header {
+	@media (max-width: $medium-break) {
+		width: 100%;
+	}
+	padding: 20px 20px 0 20px;
+	margin: auto;
 }
 
 #logo {
@@ -49,6 +65,16 @@ body {
 		font-size: 14px;
 		font-weight: 700;
 
+		@media (min-width: $small-break) {
+			&::before {
+				content:'Juan '
+			}
+
+			&::after {
+				content:' Angarita'
+			}
+		}
+
 		a {
 			color: #333;
 			text-decoration: none;
@@ -65,30 +91,60 @@ body {
 }
 
 #slogan {
-	font-size: 80px;
+	@media (min-width: $medium-break) {
+			font-size: 80px;
+			line-height: 100px;
+			width: 725px;
+			margin-top: 100px;
+	}
+	@media (max-width: $medium-break) and (min-width: $small-break) {
+			font-size: 50px;
+			line-height: 70px;
+			text-align: center;
+			width: 500px;
+			margin: 100px auto 0 auto;
+	}
+	@media (max-width: $small-break) {
+		font-size: 30px;
+		line-height: 46px;
+		text-align: center;
+		width: 250px;
+		margin: 100px auto 0 auto;
+	}
 	font-weight: 800;
-	width: 725px;
-	line-height: 100px;
-	margin-top: 100px;
 }
 
 #vectorField {
 	width: 100%;
 	overflow: hidden;
 	position: relative;
+	@media (max-width: $medium-break) {
+			height: 200px !important;
+	}
 	height: 330px;
 
 	canvas {
 		position:absolute;
 		left: 50%;
 		margin-left: -900px;
+		width: 1800px;
+		@media (max-width: $medium-break) {
+				height: 200px !important;
+		}
 	}
 }
 
 #team {
-	width: 940px;
 	padding: 20px 10px 0 10px;
 	margin: auto;
+
+	@media (min-width: $medium-break) {
+		width: 940px;
+	}
+	@media (max-width: $medium-break) {
+			width: 100%;
+
+	}
 
     #teamHeader {
         padding: 40px 0 50px 0;
@@ -116,9 +172,17 @@ body {
 #about {
   color: #666;
   padding: 0 25px;
-  font-size: 24px;
-  line-height: 36px;
   margin-bottom: 50px;
+
+
+	@media (min-width: $small-break) {
+		font-size: 24px;
+		line-height: 36px;
+	}
+	@media (max-width: $small-break) {
+		font-size: 18px;
+		line-height: 30px;
+	}
 
   .yellow {
     color: $yellow;
